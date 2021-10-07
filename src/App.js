@@ -7,7 +7,10 @@ import './App.css';
 function App() {
   return (
     <>
+    <div>
     <Header/>
+    </div>
+    
     <Switch>
     <Route path='/'>
       <Header/>
