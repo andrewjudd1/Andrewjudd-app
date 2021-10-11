@@ -1,0 +1,63 @@
+:root {
+	--clr-dark: #293235;
+	--clr-accent: #03be00;
+	--clr-light: #d7dedc;
+	--clr-dark-accent: #414e52;
+	 --bs-img: 2px 2px 20px #d7dedc, 1px 1px 10px #d7dedc;
+
+}
+
+
+
+.calc-header {
+    color: var(--clr-light);
+    margin: 100px 0 40px 0;
+    text-align: center;
+  }
+
+.calc-wrapper {
+    margin: 0 auto;
+    width: 300px;
+    display: grid;
+    grid-template-columns: 100px 100px 50px 50px;
+    grid-template-areas:
+        "num num answer answer"
+        "nums . . operators "
+}
+
+.calc-num {
+    grid-area: num;
+    font-size: 2rem;
+    text-align: center;
+    background: var(--clr-light);
+}
+
+.calc-answer {
+    grid-area: answer;
+    
+    font-size: 2rem;
+    text-align: center;
+    background: var(--clr-light);
+}
+
+.nums {
+    grid-area: nums;
+  
+    align-self: start;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.eachnum {
+    font-size: 2rem;
+    width: calc(500px /10);
+}
+
+.operators-container {
+    grid-area: operators;
+}
+
+.operators {
+    font-size: 2rem;
+    width: 50px;
+}

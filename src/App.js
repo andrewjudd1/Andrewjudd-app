@@ -7,6 +7,7 @@ import Services from './pages/Services/Services'
 import Home from './pages/Home'
 import About from './pages/About'
 import Consulting from './pages/Services/Consulting'
+import Calculator from './pages/Calculator/Calculator'
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
    </Route>
    <Route path='/about'>
     <About/>
+   </Route>
+   <Route path='/calculator'>
+    <Calculator/>
    </Route>
 
 </Switch>
