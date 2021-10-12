@@ -11,21 +11,39 @@
 
 .calc-header {
     color: var(--clr-light);
-    margin: 100px 0 40px 0;
+    margin: 0 0 20px 0;
+    padding: 0px;
     text-align: center;
+    font-size: 4rem;
   }
 
 .calc-wrapper {
     margin: 0 auto;
-    width: 300px;
+    width: max-content;
     display: grid;
-    grid-template-columns: 100px 100px 50px 50px;
+    grid-template-columns: 150px 150px 25px 175px;
     grid-template-areas:
-        "num num answer answer"
-        "nums . . operators "
+        "num num equal answer"
+        "nums nums operators operators "
+}
+
+.calc-equal {
+    margin: 0px;
+    padding: 0px;
+
+    height: 96px;
+    grid-area: equal;
+    font-size: 4rem;
+    text-align: center;
+    background: var(--clr-light);
 }
 
 .calc-num {
+    margin: 0px;
+    padding: 0px;
+    align-self: center;
+    padding-top: 24px;
+    height: 96px;
     grid-area: num;
     font-size: 2rem;
     text-align: center;
@@ -34,7 +52,9 @@
 
 .calc-answer {
     grid-area: answer;
-    
+    padding-top: 24px;
+    align-self: center;
+    height: 96px;
     font-size: 2rem;
     text-align: center;
     background: var(--clr-light);
@@ -42,22 +62,49 @@
 
 .nums {
     grid-area: nums;
-  
     align-self: start;
     display: flex;
     flex-wrap: wrap;
 }
 
 .eachnum {
-    font-size: 2rem;
-    width: calc(500px /10);
+    height: 96px;
+    background: rgb(71, 71, 71);
+    text-decoration: none;
+    border: none;
+    font-size: 4rem;
+    width: 100px;
+    color: #d7dedc;
+}
+
+.eachnum:last-child {
+    width: 300px;
+
+}
+.eachnum:hover,
+.eachnum:focus {
+    background: gray;
 }
 
 .operators-container {
+    
     grid-area: operators;
+    
 }
 
 .operators {
-    font-size: 2rem;
-    width: 50px;
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    border: none;
+    background: orange;
+    color: white;
+    font-size: 4rem;
+    width: 100px;
+    height: 128px;
+}
+
+.operators:hover,
+.operators:focus {
+    background: rgb(250, 190, 78);
 }

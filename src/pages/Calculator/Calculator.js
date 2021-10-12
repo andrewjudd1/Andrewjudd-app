@@ -1,19 +1,20 @@
 import React, {useState} from 'react'
 import Header from '../../components/header'
 function Calculator() {
-    const [displayOperator, setDisplayOperator] = useState("-")
-    const [currentNum, setCurrentNum] = useState("-")
+    const [displayEquals, setDisplayEquals] = useState('')
+    const [displayOperator, setDisplayOperator] = useState("")
+    const [currentNum, setCurrentNum] = useState("")
     const [numOne, setNumOne] = useState([])
-    const [numTwo, setNumTwo] = useState("-")
-    const [numThree, setNumThree] = useState("-")
+    const [numTwo, setNumTwo] = useState("")
+    const [numThree, setNumThree] = useState("")
     const [operatorStatus, setOperatorStatus] = useState(0)
     const [addStatus, setAddStatus] = useState(false)
     const [minusStatus, setMinusStatus] = useState(false)
     const [multiplyStatus, setMultiplyStatus] = useState(false)
     const [divideStatus, setDivideStatus] = useState(false)
-    let nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    let operators = ["+", "-", "*", "/", '=']
-    console.log(currentNum)
+    let nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+    let operators = ["c", "+", "-", "*", "/", '=']
+   
   
     const add = (x, y) => x + y
     return(
@@ -23,7 +24,10 @@ function Calculator() {
             <h1 className="calc-header">Calculator</h1>
             <div className="calc-wrapper">
                 <div className="calc-num">
-                    {`${numTwo} ${displayOperator} ${numThree} =` }         
+                    {`${numTwo} ${displayOperator} ${numThree}` }         
+                </div>
+                <div className="calc-equal">
+                    {displayEquals}
                 </div>
                 <div className="calc-answer">
                     {currentNum}
@@ -32,19 +36,24 @@ function Calculator() {
                 <div className="nums"> 
                     {nums.map(num => {
                         return <button className="eachnum" onClick={()=> {
+                            setDisplayEquals('')
                             if(operatorStatus === 0) {
                                 numOne.push(num.toString())
                                 setNumTwo(parseInt(numOne.reduce(add, '')))
-                                console.log(numOne)
-                                console.log(numTwo)
+                               
                             } 
                             
                            else if (operatorStatus === 1) {
                                numOne.push(num.toString())
-                               console.log(numOne)
+                               
                                setNumThree(parseInt(numOne.reduce(add, '')))
-                               console.log(numThree)
+                               
                            } 
+                           
+                           else if (operatorStatus === 2) {
+                               numOne.push(num.toString())
+                            setNumThree(parseInt(numOne.reduce(add, '')))
+                           }
                        }}key={num}> {num} </button> 
                      })}
                 </div>
@@ -54,52 +63,78 @@ function Calculator() {
                          <button 
                          key={symbol} 
                          className="operators" 
-                         onClick={() => {
+                         onClick={(e) => {
+                             setNumOne([])
+
+                             if (operatorStatus === 0) {
                              setOperatorStatus(1)
-                            setNumOne([])
-                            console.log(numTwo)
-                            if (index === 0) {
+                             }
+                           
+                            if (symbol === "+" ) {
                                 setAddStatus(true)
                                 setDisplayOperator(symbol)
                             }
 
-                            if (index === 1) {
+                            else if (symbol === "-") {
                                 setMinusStatus(true)
                                 setDisplayOperator(symbol)
                             }
-                            if (index === 2) {
+                            else if (symbol === "*") {
                                 setMultiplyStatus(true)
                                 setDisplayOperator(symbol)
                             }
-                            if (index === 3) {
+                            else if (symbol === "/") {
                                 setDivideStatus(true)
                                 setDisplayOperator(symbol)
                             }
 
-                            if (index === 4) {
-                                setOperatorStatus(0)
+                            else if (symbol === "=") {
+                                setOperatorStatus(2)
                                 setNumOne([])
-                                
+                                setDisplayEquals('=')
+                               
                             }
 
-                            if (index=== 4 && addStatus) {
+                            if (symbol === "=" && addStatus) {
                                 setCurrentNum(numTwo + numThree)
                                 setAddStatus(false)
                                
-                            } else if(index=== 4 && minusStatus) {
+                            } else if(symbol === "=" && minusStatus) {
                                 setCurrentNum(numTwo - numThree)
                                 setMinusStatus(false)
                             } 
-                             else if(index=== 4 && multiplyStatus) {
+                             else if(symbol === "=" && multiplyStatus) {
                                 setCurrentNum(numTwo * numThree)
                                 setMultiplyStatus(false)
                             } 
-                             else if(index=== 4 && divideStatus) {
-                                setCurrentNum(numTwo / numThree)
+                             else if(symbol === "=" && divideStatus) {
+                                setCurrentNum((numTwo / numThree).toFixed(2))
                                 setDivideStatus(false)
                                 
                             } 
 
+                         if (operatorStatus === 2 && symbol === "=") {
+                            setCurrentNum(eval(`${numTwo} ${displayOperator} ${numThree}`))
+                        }
+                            else if (operatorStatus === 2 && numThree) {
+                                setNumTwo(eval(`${numTwo} ${displayOperator} ${numThree}`))
+                                setNumThree('')
+                                setOperatorStatus(1)
+                            }
+
+                            if(symbol === "c") {
+                                setOperatorStatus(0)
+                                setDisplayOperator('')
+                                setDisplayEquals('')
+                                setNumOne([])
+                                setCurrentNum('')
+                                setNumTwo('')
+                                setNumThree('')
+                                setAddStatus(false)
+                                setMinusStatus(false)
+                                setMultiplyStatus(false)
+                                setDivideStatus(false)
+                            }
                         }}> 
                             {symbol} 
                          </button> 

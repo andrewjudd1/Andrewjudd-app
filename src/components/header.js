@@ -5,7 +5,7 @@ function Header() {
    return(
        <>
         <nav className="nav-container">
-            <img className="logo" src={img} alt="GoViably logo" />
+          <Link className="link logo" to='/'> <h1 className="header-title"> Andrew's Site </h1> </Link>
             <div className="nav-links">
                 <Link className="link" to="/">Home</Link> 
                 <Link className="link" to="/services">Services</Link>
