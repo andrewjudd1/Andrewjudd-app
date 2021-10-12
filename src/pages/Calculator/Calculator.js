@@ -114,10 +114,10 @@ function Calculator() {
                             } 
 
                          if (operatorStatus === 2 && symbol === "=") {
-                            setCurrentNum(eval(`${numTwo} ${displayOperator} ${numThree}`))
+                            // setCurrentNum(eval(`${numTwo} ${displayOperator} ${numThree}`))
                         }
                             else if (operatorStatus === 2 && numThree) {
-                                setNumTwo(eval(`${numTwo} ${displayOperator} ${numThree}`))
+                                // setNumTwo(eval(`${numTwo} ${displayOperator} ${numThree}`))
                                 setNumThree('')
                                 setOperatorStatus(1)
                             }
