@@ -100,7 +100,7 @@ function Calculator() {
                                 setAddStatus(false)
                                
                             } else if(symbol === "=" && minusStatus) {
-                                setCurrentNum(numTwo - numThree)
+                                setCurrentNum(numTwo + numThree)
                                 setMinusStatus(false)
                             } 
                              else if(symbol === "=" && multiplyStatus) {
@@ -114,10 +114,25 @@ function Calculator() {
                             } 
 
                          if (operatorStatus === 2 && symbol === "=") {
-                            // setCurrentNum(eval(`${numTwo} ${displayOperator} ${numThree}`))
+                            let getOperators = {
+                                "+": function(a, b) {return a + b},
+                                "-": function(a, b) {return a - b},
+                                "*": function(a, b) {return a * b},
+                                "/": function(a, b) {return a / b}
+                            }
+                            console.log(displayOperator)
+                            let newNum = getOperators[displayOperator](numTwo, numThree)
+                                setCurrentNum(newNum)
                         }
                             else if (operatorStatus === 2 && numThree) {
-                                // setNumTwo(eval(`${numTwo} ${displayOperator} ${numThree}`))
+                                let getOperators = {
+                                    "+": function(a, b) {return a + b},
+                                    "-": function(a, b) {return a - b},
+                                    "*": function(a, b) {return a * b},
+                                    "/": function(a, b) {return a / b}
+                                }
+                                let newNum = getOperators[displayOperator](numTwo, numThree)
+                                    setCurrentNum(newNum)
                                 setNumThree('')
                                 setOperatorStatus(1)
                             }
