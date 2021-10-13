@@ -123,6 +123,7 @@ function Calculator() {
                             console.log(displayOperator)
                             let newNum = getOperators[displayOperator](numTwo, numThree)
                                 setCurrentNum(newNum)
+                                setNumTwo(newNum)
                         }
                             else if (operatorStatus === 2 && numThree) {
                                 let getOperators = {
@@ -135,6 +136,7 @@ function Calculator() {
                                     setCurrentNum(newNum)
                                 setNumThree('')
                                 setOperatorStatus(1)
+                                setNumTwo(newNum)
                             }
 
                             if(symbol === "c") {
